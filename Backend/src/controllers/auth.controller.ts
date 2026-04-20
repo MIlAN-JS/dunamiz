@@ -1,6 +1,7 @@
 import type{ Request , Response } from "express";
 import asyncHandler from "../utils/asyncHandler.js";
 import userModel from "../models/user.model.js";
+import { createToken } from "../services/auth.service.js";
 
 
 
@@ -27,10 +28,18 @@ const registerUser = asyncHandler(async(req: Request, res: Response) => {
         name
     })
 
+    // create a token 
+    const token = createToken(newUser)
+
+
+    // set the token in cookie
+
+    res.cookie("token", token)
+
     // return a success response
 
 
-    res.json({ message: "User registration successful" , user : newUser})
+    res.status(201).json({ message: "User registration successful" , user : newUser})
 })
 
 
