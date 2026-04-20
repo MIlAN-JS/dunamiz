@@ -73,3 +73,22 @@
   createdAt: new Date(),
   updatedAt: new Date()
 }
+
+
+
+//authentication 
+
+
+Oauth - google 
+Oauth - facebook 
+
+
+user - oauth - server( check if user exist -> yes ? just create and give new token : create user and save in db and create new token and send to user)
+
+
+Day-2 (April 20)
+
+1. Google Oauth login backend 
+2. creating features
+  -- join room 
+  -- checking if i can use socket io anywhere to give real time notification to the match creator 
