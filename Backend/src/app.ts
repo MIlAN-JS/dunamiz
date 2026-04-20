@@ -4,6 +4,7 @@ import asyncHandler from "./utils/asyncHandler.js";
 import { nextTick } from "process";
 import { match } from "assert";
 import matchRouter from "./routes/match.routes.js";
+import authRouter from "./routes/auth.routes.js";
 const app = express()
 
 
@@ -12,9 +13,7 @@ app.use(express.urlencoded({extended: true}))
 
 // match routes
 app.use("/api/match", matchRouter)
-
-
-
+app.use("/",authRouter )
 
 
 
