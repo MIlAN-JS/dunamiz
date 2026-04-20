@@ -1,5 +1,7 @@
 import type { Profile } from "passport";
 import asyncHandler from "../utils/asyncHandler.js";
+import jwt from "jsonwebtoken"
+import config from "../config/config.js";
 
 const findOrCreateUser = async(profile: Profile) => {
     // Implement logic to find or create a user in your database based on the profile information
@@ -10,6 +12,16 @@ const findOrCreateUser = async(profile: Profile) => {
     // If the user exists, return the user object
     // If the user does not exist, create a new user in your database and return the new user object
 }
+
+// const createToken = (user : string)=>{
+//     try {
+//         const token = jwt.sign(id : , config.JWT_SECRET, {expiresIn : "1d"})
+
+        
+//     } catch (error) {
+        
+//     }
+// }
 
 
 export{

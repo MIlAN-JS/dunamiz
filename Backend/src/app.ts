@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}))
 
 // match routes
 app.use("/api/match", matchRouter)
-app.use("/",authRouter )
+app.use("/auth",authRouter )
 
 
 
