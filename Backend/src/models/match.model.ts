@@ -5,7 +5,6 @@ import z from "zod";
 export interface IMatch {
 
     title : string,
-
     gameSettings :{
         gunAttributes: boolean,
         esportsMode: boolean,
@@ -17,27 +16,21 @@ export interface IMatch {
         map: string,
         gameType: string
     },
-
     entryFee : number,
     prizePool : number,
-
-   
     players : {
         userId : string,
         joinedAt : Date
     }[],
-
     room : {
         roomId : string,
         password : string
     },
-
-    createdBy : ObjectId, 
-
+    createdBy : mongoose.Types.ObjectId | string, 
     createdAt :  Date,
     updatedAt :  Date,
-
-    status: "OPEN" | "FULL" | "LIVE" | "COMPLETED"
+    status: "OPEN" | "FULL" | "LIVE" | "COMPLETED",
+    
 
    
 

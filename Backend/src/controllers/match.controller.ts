@@ -1,5 +1,5 @@
 import matchModel from "../models/match.model.js";
-import { createMatch } from "../services/match.service.js";
+import { createMatch, joinMatch } from "../services/match.service.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
@@ -60,6 +60,19 @@ const getMatchController = asyncHandler(async(req:any , res:any )=>{
 
 })
 
+const joinMatchController = asyncHandler(async(req:any , res:any )=>{
 
+    const {matchId} = req.body
+    const userId = req.user.id
+    
+    const match = await joinMatch(matchId,userId)
 
-export {createMatchController , getMatchController}
+    res.status(200).json({
+        success: true,
+        message: "User joined the match successfully",
+        data: match
+    })
+
+})
+
+export {createMatchController , getMatchController , joinMatchController}

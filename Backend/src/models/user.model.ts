@@ -6,14 +6,17 @@ interface IUser {
     password: string,
     name: string,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    currentMatch : mongoose.Types.ObjectId | null
+
 }
 
 const userSchema = new mongoose.Schema<IUser>({
 
     email : {type : String, required : true, unique : true},
     password : {type : String, required : true},
-    name : {type : String, required : true}
+    name : {type : String, required : true},
+    currentMatch : {type : mongoose.Schema.Types.ObjectId, ref : "matchModel", default : null}
 
 }, {timestamps: true, strict: false});
 

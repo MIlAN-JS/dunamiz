@@ -92,3 +92,9 @@ Day-2 (April 20)
 2. creating features
   -- join room 
   -- checking if i can use socket io anywhere to give real time notification to the match creator 
+
+
+
+
+// basic flow 
+
