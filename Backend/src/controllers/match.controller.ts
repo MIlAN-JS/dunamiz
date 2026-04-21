@@ -1,22 +1,21 @@
 import matchModel from "../models/match.model.js";
+import { createMatch } from "../services/match.service.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
 const createMatchController = asyncHandler(async(req:any , res:any )=>{
 
     // Extracting data from the request body
-    const {title,gameSettings,entryFee,prizePool,createdBy } = req.body;
+    const {title,gameSettings,entryFee,prizePool } = req.body;
+    
 
+    const user:string = req.user.id
 
+   
     //storing the data in the database
-    const newMatch = await matchModel.create({
-        title: title,
-        gameSettings: gameSettings,
-        entryFee: entryFee,
-        prizePool: prizePool,
-        createdBy: createdBy
-    })
-    console.log(newMatch)
+    const newMatch = await createMatch(title,gameSettings,entryFee,prizePool,user)
+    
+    console.log(newMatch)  
 
 
 
@@ -47,7 +46,7 @@ const getMatchController = asyncHandler(async(req:any , res:any )=>{
     }
 
     // fetch all the matches from database based on the filter
-    const matches = await matchModel.find(filter)
+    const matches = await matchModel.find(filter).populate("createdBy" , "email name")
 
     // responding to the client
 

@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { type ObjectId } from "mongoose";
 import z from "zod";
 
 
-interface IMatch {
+export interface IMatch {
 
     title : string,
 
@@ -32,7 +32,7 @@ interface IMatch {
         password : string
     },
 
-    createdBy : string, 
+    createdBy : ObjectId, 
 
     createdAt :  Date,
     updatedAt :  Date,
@@ -47,7 +47,7 @@ interface IMatch {
 
 
 
-} 
+}   
 //create a schema for the match model
 const matchSchema = new mongoose.Schema<IMatch>({
     title : {type : String, required : true},
@@ -81,7 +81,8 @@ const matchSchema = new mongoose.Schema<IMatch>({
     },
 
     createdBy :{
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true
     }
    
