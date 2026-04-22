@@ -96,5 +96,15 @@ Day-2 (April 20)
 
 
 
-// basic flow 
 
+features created till now : 
+
+match creation : 
+ -- user can create match 
+
+
+join match : 
+  -- user can join match 
+    * if user  
+
+ 
