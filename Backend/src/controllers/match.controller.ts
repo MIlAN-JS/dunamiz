@@ -1,5 +1,5 @@
 import matchModel from "../models/match.model.js";
-import { createMatch, joinMatch, leaveMatch } from "../services/match.service.js";
+import { createMatch, joinMatch, leaveMatch , startMatch} from "../services/match.service.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
@@ -94,4 +94,22 @@ const leaveMatchController = asyncHandler(async(req:any , res:any )=>{
 
 })
 
-export {createMatchController , getMatchController , joinMatchController , leaveMatchController}
+const startMatchController = asyncHandler(async(req:any , res:any )=>{
+
+    // get match id from request body
+    const {matchId} = req.body
+    
+    // get user id from request
+    const userId = req.user.id
+
+    // call the service function to start the match
+    const match = await startMatch(matchId,userId)
+
+    res.status(200).json({
+        success: true,
+        message: "Match started successfully",
+        data: match
+    })
+})
+
+export {createMatchController , getMatchController , joinMatchController , leaveMatchController , startMatchController}

@@ -112,5 +112,31 @@ import userModel from "../models/user.model.js";
        
     }
     
+    const startMatch = async (matchId: string , userId: string ) => {
 
-    export {createMatch , joinMatch , leaveMatch}
+        // check if match exists
+        const match = await matchModel.findById(matchId);
+
+        if (!match) {
+            throw new Error("Match not found");
+          
+        }
+
+        // check if user is the creator of the match
+        if (match.createdBy.toString() !== userId) {
+            throw new Error("Only the creator can start the match");
+            
+        }
+// todo : create a new key field in match model called minPlayers and maximum players to start .
+        // check if match has at least 20 or minimum   players to start
+        if (match.players.length < 20) {
+            throw new Error("At least 20 players are required to start the match");
+        }
+
+        // update the match status to LIVE
+        match.status = "LIVE";
+        return await match.save();
+
+    };
+
+    export {createMatch , joinMatch , leaveMatch , startMatch}

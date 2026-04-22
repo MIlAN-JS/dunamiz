@@ -13,7 +13,7 @@ const server = createServer(app);
 connectToDb();
 const port = config.PORT || 5000
 // running our app 
-server.listen(8000, ()=>{
+server.listen(port, ()=>{
     console.log("our app is running on port " + port)
 })
 
