@@ -1,5 +1,5 @@
 import express from 'express';
-import { createMatchController, getMatchController ,joinMatchController, leaveMatchController, startMatchController, updateMatchController} from '../controllers/match.controller.js';
+import { createMatchController, deleteMatchController, getMatchController ,joinMatchController, leaveMatchController, startMatchController, updateMatchController} from '../controllers/match.controller.js';
 
 import { checkUser } from '../middlewares/auth.middleware.js';
 import { match } from 'assert';
@@ -13,6 +13,7 @@ matchRouter.post("/join-match", checkUser , joinMatchController)
 matchRouter.post("/leave-match", checkUser , leaveMatchController)
 matchRouter.post("/start-match", checkUser , startMatchController)
 matchRouter.patch("/update-match", checkUser , updateMatchController)
+matchRouter.delete("/delete-match", checkUser , deleteMatchController)
 
 export default matchRouter; 
 
