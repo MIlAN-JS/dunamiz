@@ -1,5 +1,5 @@
 import matchModel from "../models/match.model.js";
-import { createMatch, joinMatch, leaveMatch , startMatch , updateMatch
+import { createMatch, joinMatch, leaveMatch , startMatch , updateMatch,deleteMatch
 
 } from "../services/match.service.js";
 import asyncHandler from "../utils/asyncHandler.js";
@@ -133,5 +133,23 @@ const startMatchController = asyncHandler(async(req:any , res:any )=>{
     })
 })
 
+const deleteMatchController = asyncHandler(async(req:any , res:any )=>{
 
-export {createMatchController , getMatchController , joinMatchController , leaveMatchController , startMatchController , updateMatchController}
+    // get match id from request body
+    const {matchId} = req.body
+    
+    // get user id from request
+    const userId = req.user.id  
+
+    // call the service function to start the match
+    const match = await deleteMatch(matchId,userId)
+
+    res.status(200).json({
+        success: true,
+        message: "Match deleted successfully",
+        
+    })
+})
+
+
+export {createMatchController , getMatchController , joinMatchController , leaveMatchController , startMatchController , updateMatchController, deleteMatchController}

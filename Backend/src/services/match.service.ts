@@ -174,4 +174,25 @@ import userModel from "../models/user.model.js";
         return updatedMatch;
     }
 
-    export {createMatch , joinMatch , leaveMatch , startMatch , updateMatch}
+    const deleteMatch = async (matchId: string, userId: string) => {
+
+        // check if match exists
+        const match = await matchModel.findById(matchId);
+
+        if (!match) {
+            throw new Error("Match not found");
+          
+        }
+
+        // check if user is the creator of the match
+        if (match.createdBy.toString() !== userId) {
+            throw new Error("Only the creator can delete the match");
+            
+        }
+
+        await matchModel.findByIdAndDelete(matchId);
+
+        return ;
+    }
+
+    export {createMatch , joinMatch , leaveMatch , startMatch , updateMatch , deleteMatch}
