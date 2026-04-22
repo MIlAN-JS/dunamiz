@@ -139,4 +139,39 @@ import userModel from "../models/user.model.js";
 
     };
 
-    export {createMatch , joinMatch , leaveMatch , startMatch}
+
+    const updateMatch = async (matchId: string, userId: string, data: any) => {
+
+        // check if match exists
+        const match = await matchModel.findById(matchId);
+
+        if (!match) {
+            throw new Error("Match not found");
+          
+        }
+
+        // check if user is the creator of the match
+        if (match.createdBy.toString() !== userId) {
+            throw new Error("Only the creator can update the match");
+            
+        }
+
+        const allowedUpdates = ["title", "entryFee", "prizePool"];
+        const updatedData : any = {}
+
+        for (const key of allowedUpdates){
+            if(data[key]!== undefined){
+                updatedData[key] = data[key];
+            } 
+        }
+        
+
+        // update the match details here (for example, title or game settings)
+
+        const updatedMatch = await matchModel.findByIdAndUpdate(matchId, updatedData , { new: true });
+        match.save()
+
+        return updatedMatch;
+    }
+
+    export {createMatch , joinMatch , leaveMatch , startMatch , updateMatch}
