@@ -53,6 +53,8 @@ const registerUser = asyncHandler(async(req: Request, res: Response) => {
 const googleCallback = (req: Request, res: Response) => {
     console.log(req.user)
 
+    
+
     res.json({
         message: "Google authentication successful",
         user: req.user

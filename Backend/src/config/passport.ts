@@ -1,7 +1,7 @@
 import passport  from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import config from "./config.js";
-import { de } from "zod/locales";
+
 
 
 passport.use(new GoogleStrategy({
