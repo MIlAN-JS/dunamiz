@@ -5,9 +5,10 @@ import config from "../config/config.js";
 import id from "zod/v4/locales/id.js";
 import userModel from "../models/user.model.js";
 import type { IMatch } from "../models/match.model.js";
+import type { mongo } from "mongoose";
 
 
-const findOrCreateUser = async(userData: Profile): Promise<IMatch> => {
+const findOrCreateUser = async(userData: Profile): Promise<any> => {
     
     // receiving data from user
 
@@ -49,9 +50,13 @@ const createToken = (user :any) : string=>{
         
     
 }
+const getUserService = async (userId: mongo.ObjectId): Promise<any> => {
+    return await userModel.findById(userId)
+}
 
 
 export{
     findOrCreateUser,
-    createToken
+    createToken,
+    getUserService
 }

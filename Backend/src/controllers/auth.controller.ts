@@ -1,9 +1,11 @@
 import type{ Request , Response } from "express";
 import asyncHandler from "../utils/asyncHandler.js";
 import userModel from "../models/user.model.js";
-import { createToken } from "../services/auth.service.js";
+import { createToken, getUserService } from "../services/auth.service.js";
 import { findOrCreateUser } from "../services/auth.service.js";
 import type { Profile } from "passport-google-oauth20";
+import { success } from "zod";
+import type { mongo } from "mongoose";
 
 
 const registerUser = asyncHandler(async(req: Request, res: Response) => {
@@ -43,15 +45,6 @@ const registerUser = asyncHandler(async(req: Request, res: Response) => {
     res.status(201).json({ message: "User registration successful" , user : newUser})
 })
 
-
-
-
-
-
-
-
-
-
 const googleCallbackController = asyncHandler(async(req: Request, res: Response) => {
 
     const userData = req.user
@@ -74,9 +67,29 @@ const googleCallbackController = asyncHandler(async(req: Request, res: Response)
 
     
 })
+const getUserController = asyncHandler(async (req: any, res: Response) => {
+
+  const userId = req.user?.id;
+
+  if (!userId) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+
+  const user = await getUserService(userId);
+
+  res.status(200).json({
+    message: "user found successfully",
+    user,
+    success: true,
+  });
+});
 
 
 export {
     googleCallbackController, 
-    registerUser
+    registerUser, 
+    getUserController
 }
