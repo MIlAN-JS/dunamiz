@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import LoginPage from "../features/auth/ui/pages/LoginPage.jsx"
 import { Outlet } from 'react-router-dom'
-import useAuth from '../features/auth/hook/useAuth.js'
+import useAuth from "../features/auth/hook/useAuth.js"
 import { useSelector } from 'react-redux'
 
   const App = () => {

@@ -7,7 +7,8 @@ import MatchDetails from "../features/match/ui/pages/MatchDets.jsx"
 import MatchFeed from "../features/match/ui/pages/MatchFeed.jsx"
 import MainLayout from "./MainLayout.jsx"
 import SetupLayout from "../features/setup/ui/pages/SetupLayout.jsx"
-
+import PrivateRoute from "./PrivateRoute.jsx"
+import PublicRoute from "./PublicRoute.jsx"
 // const router = createBrowserRouter([
 //     {
 //         path: "/", 
@@ -41,37 +42,46 @@ import SetupLayout from "../features/setup/ui/pages/SetupLayout.jsx"
 
 // ])
 
-
- const router = createBrowserRouter([
-    {
-        path: "/", 
-        element : <App/>, 
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <App />,   // ✅ no children passed
+    children: [
+      {
+        path: "/",
+        element: <PrivateRoute />,        // ✅ App moved here
         children: [
-            {
-                element : <MainLayout/>, 
-                children : [
-                        { path: "/match-feed", element: <MatchFeed /> },
-                        { path: "/match-details", element: <MatchDetails /> }
-                ]
+          {
+            element: <MainLayout />,
+            children: [
+              { path: "/match-feed", element: <MatchFeed /> },
+              { path: "/match-details", element: <MatchDetails /> },
+            ],
+          },
+          {
+            element: <SetupLayout />,
+            children: [
+              { path: "/user-setup", element: <SetupPage /> },
+            ],
+          },
+        ],
+      },
+       {
+    path: "/login",
+    element: <PublicRoute><LoginPage /></PublicRoute>,
+  },
 
-            }, 
-            {
-                element : <SetupLayout/>, 
-                children : [
-                    { path: "/user-setup", element: <SetupPage /> }
-                ]
-            }, 
-            {
-                path : "/login", 
-                element : <LoginPage/>
-            }, 
-            {
-                path: "*", 
-                element : <Notfound/>
-            }
-        ]
-    }
-])
+    ],
+  },
+
+ 
+
+
+  {
+    path: "*",
+    element: <Notfound />,
+  },
+]);
 
 export default router;
 
