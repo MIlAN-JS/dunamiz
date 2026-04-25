@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaFacebook, FaTiktok, FaChevronLeft, FaBuilding } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
+import { googleLogin } from "../../services/auth.services.js";
 
 const socialButtons = [
   {
@@ -10,6 +11,7 @@ const socialButtons = [
     icon: <FaFacebook className="text-[#1877F2]" size={24} />,
     hoverClass: "hover:border-[#1877F2]/50 hover:bg-[#1877F2]/10",
     rippleColor: "rgba(24,119,242,0.15)",
+    
   },
   {
     id: "google",
@@ -17,7 +19,9 @@ const socialButtons = [
     icon: <FcGoogle size={24} />,
     hoverClass: "hover:border-white/30 hover:bg-white/10",
     rippleColor: "rgba(255,255,255,0.1)",
-    
+    onClick: () => {
+      googleLogin()
+    }
   },
   {
     id: "tiktok",
@@ -140,6 +144,7 @@ function SocialButton({ icon, label, hoverClass, onClick }) {
                 icon={btn.icon}
                 label={btn.label}
                 hoverClass={btn.hoverClass}
+                onClick={btn.onClick? btn.onClick : () => {}}
                
               />
             ))}

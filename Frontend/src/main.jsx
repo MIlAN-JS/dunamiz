@@ -6,6 +6,7 @@ import { Router } from 'react-router'
 import { RouterProvider } from 'react-router-dom'
 import router from './app/app.routes.jsx'
 import {Provider} from "react-redux"
+import store from './app/store.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
