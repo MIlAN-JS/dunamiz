@@ -3,16 +3,43 @@ import asyncHandler from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken"
 import config from "../config/config.js";
 import id from "zod/v4/locales/id.js";
+import userModel from "../models/user.model.js";
+import type { IMatch } from "../models/match.model.js";
 
 
-const findOrCreateUser = async(profile: Profile) => {
-    // Implement logic to find or create a user in your database based on the profile information
+const findOrCreateUser = async(userData: Profile): Promise<IMatch> => {
+    
+    // receiving data from user
 
+    const {id , displayName , name , emails , photos} = userData
 
+    // checking if user already exists in the database
 
-    // For example, you can use the profile.id to check if the user already exists in your database
-    // If the user exists, return the user object
-    // If the user does not exist, create a new user in your database and return the new user object
+    const user = await userModel.findOne({
+        $or : [
+            {googleId : id},
+            ...(emails?.[0]?.value ? [{ email: emails[0].value }] : [])
+        ]
+    })
+
+    if(user){
+        return user
+    }
+
+    // convert name object into fullName string
+      const fullName = name ? `${name.givenName} ${name.familyName}` : displayName
+    // checking if email exists
+        const email = emails?.[0]?.value;
+    // if user does not exist, create a new user in the database
+
+    const newUser = await userModel.create({
+        name : fullName,
+        googleId : id, 
+        ...(email &&{email})
+    })
+
+    return newUser
+
 }
 
 const createToken = (user :any) : string=>{

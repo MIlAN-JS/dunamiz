@@ -1,6 +1,6 @@
 import passport from "../config/passport.js";
 import express from "express";
-import { googleCallback, registerUser } from "../controllers/auth.controller.js";
+import {  googleCallbackController, registerUser } from "../controllers/auth.controller.js";
 
 const authRouter = express.Router();
 
@@ -18,6 +18,6 @@ authRouter.get("/google",
 authRouter.get('/google/callback',passport.authenticate("google",{
     session: false,
     failureRedirect: '/'
-}), googleCallback)
+}), googleCallbackController)
 
 export default authRouter;
