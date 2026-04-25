@@ -52,6 +52,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute />,        // ✅ App moved here
         children: [
           {
+            path: "",
             element: <MainLayout />,
             children: [
               { path: "/match-feed", element: <MatchFeed /> },
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
             ],
           },
           {
+            
             element: <SetupLayout />,
             children: [
               { path: "/user-setup", element: <SetupPage /> },

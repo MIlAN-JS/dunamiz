@@ -18,18 +18,7 @@ import { useSelector } from 'react-redux'
 
     return (
       <main>
-
-        {/* //navbar */}
-      i am app lol wtf
-
-
-        {/* //childrens */}
-
-        <Outlet/>
-  
-
-
-        
+        <Outlet/> 
       </main>
     )
   }
