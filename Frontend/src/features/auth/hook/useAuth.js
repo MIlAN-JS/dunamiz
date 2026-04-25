@@ -9,31 +9,31 @@ const useAuth = ()=>{
  const dispatch = useDispatch()
 
 
-  const handleGetUser =  async()=>{
-
-    try {
+    const handleGetUser =  async()=>{
+        console.log("start")
+        try {
         
-        dispatch(loginStart());
-        const user = await getUser()
-        console.log(user)
+            dispatch(loginStart());
+            const user = await getUser()
+            console.log(user)
 
-        dispatch(loginSuccess({
-            _id : user._id,
-            name : user.name,
-            email : user.email, 
-            currentMatch :user.currentMatch
-        })) 
+            dispatch(loginSuccess({
+                _id : user._id,
+                name : user.name,
+                email : user.email, 
+                currentMatch :user.currentMatch
+            })) 
 
-        dispatch(clearError())
-        
-        
-    } catch (error) {
+            dispatch(clearError())
+            
+            
+        } catch (error) {
+            console.log("error", error)
+            dispatch(loginFailure(error.message))
+            
+        }
 
-        dispatch(loginFailure(error.message))
-        
-    }
-
-    }
+        }
 
 
 return {handleGetUser}
