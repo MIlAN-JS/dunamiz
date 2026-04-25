@@ -1,6 +1,8 @@
 import React from 'react'
 
-const MatchDets = () => {
+const MatchDetails = () => {
+
+  console.log("inside match")
   return (
     <div>
       Match Details
@@ -8,4 +10,4 @@ const MatchDets = () => {
   )
 }
 
-export default MatchDets
+export default MatchDetails
