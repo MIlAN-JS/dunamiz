@@ -17,6 +17,7 @@ const socialButtons = [
     icon: <FcGoogle size={24} />,
     hoverClass: "hover:border-white/30 hover:bg-white/10",
     rippleColor: "rgba(255,255,255,0.1)",
+    
   },
   {
     id: "tiktok",
@@ -139,6 +140,7 @@ function SocialButton({ icon, label, hoverClass, onClick }) {
                 icon={btn.icon}
                 label={btn.label}
                 hoverClass={btn.hoverClass}
+               
               />
             ))}
           </div>
