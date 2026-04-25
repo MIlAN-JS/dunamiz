@@ -1,9 +1,10 @@
 import React from 'react'
+import LoginPage from '../features/auth/ui/pages/LoginPage'
 
 const App = () => {
   return (
     <div>
-      hello world
+     <LoginPage/>
     </div>
   )
 }
