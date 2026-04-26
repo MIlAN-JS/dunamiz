@@ -41,6 +41,7 @@ export interface IMatch {
 
 
 }   
+
 //create a schema for the match model
 const matchSchema = new mongoose.Schema<IMatch>({
     title : {type : String, required : true},
