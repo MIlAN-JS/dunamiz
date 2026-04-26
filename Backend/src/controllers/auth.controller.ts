@@ -50,7 +50,7 @@ const googleCallbackController = asyncHandler(async(req: Request, res: Response)
     const userData = req.user
 
     if(!userData){
-       return  res.redirect("http://localhost:5173/")
+       return  res.redirect("http://localhost:5173/login")
     }
 
     const user = await findOrCreateUser(userData as Profile)
@@ -63,7 +63,7 @@ const googleCallbackController = asyncHandler(async(req: Request, res: Response)
     sameSite: "lax",
   });
 
-    return res.redirect("http://localhost:5173/")
+    return res.redirect("http://localhost:5173/match-feed")
 
     
 })

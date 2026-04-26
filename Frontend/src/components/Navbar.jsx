@@ -23,13 +23,14 @@ const TABS = [
     glowColor: "shadow-orange-500/60",
     to : "/match-feed"
   },
-//   {
-//     id: "friends",
-//     label: "Squad",
-//     icon: <IoPeople size={22} />,
-//     activeColor: "text-cyan-400",
-//     glowColor: "shadow-cyan-500/60",
-//   },
+  {
+    id: "CreateMatch",
+    label: "Create Match",
+    icon: <IoGameController size={22} />,
+    activeColor: "text-cyan-400",
+    glowColor: "shadow-cyan-500/60",
+    to : "/create-match"
+  },
 ];
 
 const BinduLogo = () => (
