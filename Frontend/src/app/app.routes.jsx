@@ -9,6 +9,7 @@ import MainLayout from "./MainLayout.jsx"
 import SetupLayout from "../features/setup/ui/pages/SetupLayout.jsx"
 import PrivateRoute from "./PrivateRoute.jsx"
 import PublicRoute from "./PublicRoute.jsx"
+import CreateMatch from "../features/match/ui/pages/CreateMatch.jsx"
 // const router = createBrowserRouter([
 //     {
 //         path: "/", 
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
             children: [
               { path: "/match-feed", element: <MatchFeed /> },
               { path: "/match-details", element: <MatchDetails /> },
+              {path : "/create-match" , element : <CreateMatch/>}
             ],
           },
           {
